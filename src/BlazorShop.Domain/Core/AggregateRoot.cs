@@ -5,7 +5,6 @@ namespace BlazorShop.Domain.Core;
 public abstract class AggregateRoot
 {
     private readonly IList<INotification> _domainEvents = new List<INotification>();
-
     public Guid Id { get; protected set; }
 
     public IEnumerable<INotification> GetDomainEvents()
@@ -32,5 +31,5 @@ public abstract class AggregateRoot
         _domainEvents.Add(@event);
     }
 
-    protected abstract void When(INotification @events);
+    protected abstract void When(INotification @event);
 }
