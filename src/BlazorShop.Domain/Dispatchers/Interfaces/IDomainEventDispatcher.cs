@@ -1,6 +1,6 @@
 using BlazorShop.Domain.Core;
 
-namespace BlazorShop.Domain.Dispatchers;
+namespace BlazorShop.Domain.Dispatchers.Interfaces;
 
 public interface IDomainEventDispatcher
 {
