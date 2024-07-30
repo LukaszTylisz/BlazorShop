@@ -19,4 +19,11 @@
       <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Queries\GetOrderById\" />
+      <Folder Include="Queries\GetOrders\" />
+      <Folder Include="Queries\GetProductById\" />
+      <Folder Include="Queries\GetProducts\" />
+    </ItemGroup>
+
 </Project>
