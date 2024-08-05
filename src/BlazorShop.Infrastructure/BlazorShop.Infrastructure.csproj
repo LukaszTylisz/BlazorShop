@@ -14,4 +14,10 @@
       <PackageReference Include="MongoDB.Driver" Version="2.28.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\BlazorShop.Application\BlazorShop.Application.csproj" />
+      <ProjectReference Include="..\BlazorShop.Domain\BlazorShop.Domain.csproj" />
+      <ProjectReference Include="..\Shared\Shared.csproj" />
+    </ItemGroup>
+
 </Project>
