@@ -1,20 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "src\Server\Server.csproj", "{8005E5FB-9976-441B-8EBA-11378D613E83}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "src\Server\Server.csproj", "{8005E5FB-9976-441B-8EBA-11378D613E83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorShop.Domain", "src\BlazorShop.Domain\BlazorShop.Domain.csproj", "{04C5AB0D-D05B-40ED-A10F-A4A01BD5D019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorShop.Domain", "src\BlazorShop.Domain\BlazorShop.Domain.csproj", "{04C5AB0D-D05B-40ED-A10F-A4A01BD5D019}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorShop.Infrastructure", "src\BlazorShop.Infrastructure\BlazorShop.Infrastructure.csproj", "{E04B6225-02B3-4D4A-8489-242AC2E9C4CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorShop.Infrastructure", "src\BlazorShop.Infrastructure\BlazorShop.Infrastructure.csproj", "{E04B6225-02B3-4D4A-8489-242AC2E9C4CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorShop.Application", "src\BlazorShop.Application\BlazorShop.Application.csproj", "{2A2B1C72-5C58-4F2E-8F07-3DD8C64A6341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorShop.Application", "src\BlazorShop.Application\BlazorShop.Application.csproj", "{2A2B1C72-5C58-4F2E-8F07-3DD8C64A6341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorShop.Resources", "src\BlazorShop.Resources\BlazorShop.Resources.csproj", "{648FBC32-E345-4F20-8C9C-3B33EFD6DCF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorShop.Resources", "src\BlazorShop.Resources\BlazorShop.Resources.csproj", "{648FBC32-E345-4F20-8C9C-3B33EFD6DCF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shop", "Shop", "{E226C0C2-8E03-4417-A8AA-DB8E41E4F81B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "src\Client\Client.csproj", "{1D4D5EA3-4E52-46DE-B76B-DD1AAF9D6311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "src\Client\Client.csproj", "{1D4D5EA3-4E52-46DE-B76B-DD1AAF9D6311}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{D7CF8629-90E4-4659-8AD1-5C1FCCB4B3D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "src\Shared\Shared.csproj", "{D7CF8629-90E4-4659-8AD1-5C1FCCB4B3D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +53,9 @@ Global
 		{D7CF8629-90E4-4659-8AD1-5C1FCCB4B3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7CF8629-90E4-4659-8AD1-5C1FCCB4B3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7CF8629-90E4-4659-8AD1-5C1FCCB4B3D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8005E5FB-9976-441B-8EBA-11378D613E83} = {E226C0C2-8E03-4417-A8AA-DB8E41E4F81B}
