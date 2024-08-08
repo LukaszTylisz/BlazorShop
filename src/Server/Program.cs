@@ -1,44 +1,66 @@
-var builder = WebApplication.CreateBuilder(args);
+using BlazorShop.Application;
+using BlazorShop.Infrastructure;
+using BlazorShop.Infrastructure.Settings;
+using NLog;
+using NLog.Web;
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var builder = WebApplication.CreateBuilder(args);
+
+    builder.Services
+        .AddApplication()
+        .AddInfrastructure(builder.Configuration);
+
+    builder.Logging
+        .ClearProviders()
+        .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+
+    builder.Host.UseNLog();
+
+    builder.Services
+        .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies())
+        .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly))
+        .Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
+
+    builder.Services.AddControllersWithViews();
+    builder.Services.AddRazorPages();
+
+    builder.Services.AddSwaggerGen();
+
+    var app = builder.Build();
+
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseWebAssemblyDebugging();
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Error");
+    }
+
+    app.UseBlazorFrameworkFiles();
+    app.UseStaticFiles();
+
+    app.UseRouting();
+
+    app.MapRazorPages();
+    app.MapControllers();
+    app.MapFallbackToFile("index.html");
+
+    app.Run();
 }
 
-app.UseHttpsRedirection();
-
-var summaries = new[]
+catch (Exception exception)
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    logger.Error(exception, "Stopped program of exception");
+    throw;
+}
+finally
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    LogManager.Shutdown();
 }
