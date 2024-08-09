@@ -1,0 +1,45 @@
+﻿@page "/CreateCustomer"
+@using BlazorShop.Resources
+@using Client.HttpClients
+@using Client.Services
+@using global::Shared.DTOs
+@inject ShopHttpClient ShopHttpClient
+@inject AppStateService AppState
+@inject NavigationManager NavigationManager
+@inject IToastService ToastService
+
+<h1>Create customer</h1>
+
+<div class="independent-form-contents">
+    <EditForm Model="@NewCustomer" OnValidSubmit="@HandleValidSubmit">
+        <div class="independent-form-errors">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+        </div>
+
+        <div class="editor-label">
+            <label>Name</label>
+        </div>
+        <div class="editor-field">
+            <InputText @bind-Value="NewCustomer.Name" style="width:400px" />
+        </div>
+        <br />
+
+        <div class="independent-form-submit">
+            <input type="submit" class="button" value="Save" />
+        </div>
+    </EditForm>
+</div>
+
+
+@code {
+    public CreateCustomerDto NewCustomer = new CreateCustomerDto();
+
+    private async Task HandleValidSubmit()
+    {
+        await ShopHttpClient.CreateCustomerAsync(NewCustomer);
+
+        ToastService.ShowSuccess(Messages.CustomerCreated);
+        NavigationManager.NavigateTo($"/Customers");
+    }
+}

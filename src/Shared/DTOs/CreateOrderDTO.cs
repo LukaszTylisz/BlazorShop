@@ -19,7 +19,7 @@ public class CreateOrderDto
     public List<CreateOrderItemDto> OrderItems { get; set; } = default!;
 }
 
-public abstract class CreateOrderItemDto
+public class CreateOrderItemDto
 {
     public Guid ProductId { get; set; }
 
