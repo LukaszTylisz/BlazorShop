@@ -7,35 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Remove="Pages\Customers.razor" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="HttpClients\ShopHttpClient.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
         <PackageReference Include="Blazored.Toast" Version="4.2.1" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.7" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.7" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\BlazorShop.Resources\BlazorShop.Resources.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <UpToDateCheckInput Remove="Pages\Customers.razor" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Pages\Customers.razor" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="Pages\Customers.razor" />
     </ItemGroup>
 
 </Project>

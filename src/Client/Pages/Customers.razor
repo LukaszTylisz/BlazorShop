@@ -31,7 +31,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CustomersShop = await ShopHttpClient.GetCustomersAsync();
+        CustomersShop = await ShopHttpClient.GetCustomers();
     }
 
     private void NavigateToEditingCustomer(Guid customerId)

@@ -92,7 +92,7 @@ else
     {
         await CartService.RefreshShoppingCart();
         Cart = await CartService.GetShoppingCart();
-        Customers = await ShopHttpClient.GetCustomersAsync();
+        Customers = await ShopHttpClient.GetCustomers();
         AppStateService.SetCartSummary(Cart.TotalQuantity, Cart.TotalPrice);
 
         NewOrder.OrderItems = new List<CreateOrderItemDto>();
