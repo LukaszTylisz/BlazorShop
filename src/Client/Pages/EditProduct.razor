@@ -1,17 +1,16 @@
-﻿@page "/CreateProduct"
-@using BlazorShop.Resources
-@using Client.HttpClients
+﻿@using Client.HttpClients
 @using Client.Services
+@using BlazorShop.Resources
 @using global::Shared.DTOs
 @inject ShopHttpClient ShopHttpClient
 @inject AppStateService AppState
 @inject NavigationManager NavigationManager
 @inject IToastService ToastService
 
-<h1>CreateProduct</h1>
+<h1>EditProduct</h1>
 
 <div class="independent-form-contents">
-    <EditForm Model="@NewProduct" OnValidSubmit="@HandleValidSubmit">
+    <EditForm Model="@ExistingProduct" OnValidSubmit="@HandleValidSubmit">
         <div class="independent-form-errors">
             <DataAnnotationsValidator />
             <ValidationSummary />
@@ -21,14 +20,14 @@
             <label>Name</label>
         </div>
         <div class="editor-field">
-            <InputText @bind-Value="NewProduct.Name" style="width:400px" />
+            <InputText @bind-Value="ExistingProduct.Name" style="width:400px" />
         </div>
 
         <div class="editor-label">
             <label>Price</label>
         </div>
         <div class="editor-field">
-            <InputNumber @bind-Value="NewProduct.Price" />
+            <InputNumber @bind-Value="ExistingProduct.Price" />
         </div>
         <br />
 
@@ -39,13 +38,24 @@
 </div>
 
 @code {
-    public CreateProductDto NewProduct = new CreateProductDto();
+    [Parameter]
+    public Guid ProductId { get; set; }
+
+    public UpdateProductDto ExistingProduct = new UpdateProductDto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var product = await ShopHttpClient.GetProductById(ProductId);
+        ExistingProduct.Id = product.Id;
+        ExistingProduct.Name = product.Name;
+        ExistingProduct.Price = product.Price;
+    }
 
     private async Task HandleValidSubmit()
     {
-        await ShopHttpClient.CreateProduct(NewProduct);
+        await ShopHttpClient.UpdateProduct(ExistingProduct);
 
-        ToastService.ShowSuccess(Messages.ProductCreated);
+        ToastService.ShowSuccess(Messages.ProductSaved);
         NavigationManager.NavigateTo($"/Products");
     }
 }

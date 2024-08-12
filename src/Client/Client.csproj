@@ -7,6 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Content Remove="Pages\Customers.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Content Include="HttpClients\ShopHttpClient.cs" />
     </ItemGroup>
 
@@ -20,6 +24,18 @@
     <ItemGroup>
       <ProjectReference Include="..\BlazorShop.Resources\BlazorShop.Resources.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Pages\Customers.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Customers.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Pages\Customers.razor" />
     </ItemGroup>
 
 </Project>

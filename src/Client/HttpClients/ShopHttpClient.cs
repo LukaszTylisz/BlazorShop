@@ -19,13 +19,13 @@ public class ShopHttpClient(HttpClient httpClient)
         return item;
     }
 
-    public async Task ChangeOrderStatusAsync(Guid id, OrderStatus orderStatus)
+    public async Task ChangeOrderStatus(Guid id, OrderStatus orderStatus)
     {
         var response = await httpClient.PutAsJsonAsync($"api/Orders/{id}/Status", Enum.GetName(typeof(OrderStatus), orderStatus));
         response.EnsureSuccessStatusCode();
     }
 
-    public async Task<Guid> CreateOrderAsync(CreateOrderDto order)
+    public async Task<Guid> CreateOrder(CreateOrderDto order)
     {
         var response = await httpClient.PostAsJsonAsync($"api/Orders", order);
         response.EnsureSuccessStatusCode();
@@ -35,19 +35,19 @@ public class ShopHttpClient(HttpClient httpClient)
         return id;
     }
 
-    public async Task<List<ProductDto>> GetProductsAsync()
+    public async Task<List<ProductDto>> GetProducts()
     {
         var items = await httpClient.GetFromJsonAsync<List<ProductDto>>("api/Products");
         return items;
     }
 
-    public async Task<ProductDto> GetProductByIdAsync(Guid id)
+    public async Task<ProductDto> GetProductById(Guid id)
     {
         var item = await httpClient.GetFromJsonAsync<ProductDto>($"api/Products/{id}");
         return item;
     }
 
-    public async Task<ProductDto> FindProductByIdAsync(Guid id)
+    public async Task<ProductDto> FindProductById(Guid id)
     {
         var response = await httpClient.GetAsync($"api/Products/{id}");
         if (response.IsSuccessStatusCode)
@@ -58,7 +58,7 @@ public class ShopHttpClient(HttpClient httpClient)
         return null;
     }
 
-    public async Task<Guid> CreateProductAsync(CreateProductDto product)
+    public async Task<Guid> CreateProduct(CreateProductDto product)
     {
         var response = await httpClient.PostAsJsonAsync($"api/Products", product);
         response.EnsureSuccessStatusCode();
@@ -68,31 +68,31 @@ public class ShopHttpClient(HttpClient httpClient)
         return id;
     }
 
-    public async Task UpdateProductAsync(UpdateProductDto product)
+    public async Task UpdateProduct(UpdateProductDto product)
     {
         var response = await httpClient.PutAsJsonAsync($"api/Products/{product.Id}", product);
         response.EnsureSuccessStatusCode();
     }
 
-    public async Task DeleteProductAsync(Guid id)
+    public async Task DeleteProduct(Guid id)
     {
         var response = await httpClient.DeleteAsync($"api/Products/{id}");
         response.EnsureSuccessStatusCode();
     }
 
-    public async Task<List<CustomerDto>> GetCustomersAsync()
+    public async Task<List<CustomerDto>> GetCustomers()
     {
         var items = await httpClient.GetFromJsonAsync<List<CustomerDto>>("api/Customers");
         return items;
     }
 
-    public async Task<CustomerDto> GetCustomerByIdAsync(Guid id)
+    public async Task<CustomerDto> GetCustomerById(Guid id)
     {
         var item = await httpClient.GetFromJsonAsync<CustomerDto>($"api/Customers/{id}");
         return item;
     }
 
-    public async Task<Guid> CreateCustomerAsync(CreateCustomerDto customer)
+    public async Task<Guid> CreateCustomer(CreateCustomerDto customer)
     {
         var response = await httpClient.PostAsJsonAsync($"api/Customers", customer);
         response.EnsureSuccessStatusCode();
@@ -102,7 +102,7 @@ public class ShopHttpClient(HttpClient httpClient)
         return id;
     }
 
-    public async Task UpdateCustomerAsync(UpdateCustomerDto customer)
+    public async Task UpdateCustomer(UpdateCustomerDto customer)
     {
         var response = await httpClient.PutAsJsonAsync($"api/Customers/{customer.Id}", customer);
         response.EnsureSuccessStatusCode();

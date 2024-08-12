@@ -1,17 +1,17 @@
-﻿@page "/CreateCustomer"
-@using BlazorShop.Resources
+﻿@page "/EditCustomer/{CustomerId:guid}"
 @using Client.HttpClients
 @using Client.Services
+@using BlazorShop.Resources
 @using global::Shared.DTOs
 @inject ShopHttpClient ShopHttpClient
 @inject AppStateService AppState
 @inject NavigationManager NavigationManager
 @inject IToastService ToastService
 
-<h1>Create customer</h1>
+<h1>EditCustomer</h1>
 
 <div class="independent-form-contents">
-    <EditForm Model="@NewCustomer" OnValidSubmit="@HandleValidSubmit">
+    <EditForm Model="@ExistingCustomer" OnValidSubmit="@HandleValidSubmit">
         <div class="independent-form-errors">
             <DataAnnotationsValidator />
             <ValidationSummary />
@@ -21,7 +21,7 @@
             <label>Name</label>
         </div>
         <div class="editor-field">
-            <InputText @bind-Value="NewCustomer.Name" style="width:400px" />
+            <InputText @bind-Value="ExistingCustomer.Name" style="width:400px" />
         </div>
         <br />
 
@@ -31,15 +31,22 @@
     </EditForm>
 </div>
 
-
 @code {
-    public CreateCustomerDto NewCustomer = new CreateCustomerDto();
+    [Parameter]
+    public Guid CustomerId { get; set; }
+
+    public UpdateCustomerDto ExistingCustomer = new UpdateCustomerDto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var customer = await ShopHttpClient.GetCustomerById(CustomerId);
+        ExistingCustomer.Id = customer.Id;
+        ExistingCustomer.Name = customer.Name;
+    }
 
     private async Task HandleValidSubmit()
     {
-        await ShopHttpClient.CreateCustomer(NewCustomer);
-
-        ToastService.ShowSuccess(Messages.CustomerCreated);
+        await ShopHttpClient.UpdateCustomer(ExistingCustomer);
         NavigationManager.NavigateTo($"/Customers");
     }
 }

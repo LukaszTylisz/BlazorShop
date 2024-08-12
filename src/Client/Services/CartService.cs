@@ -26,7 +26,7 @@ public class CartService(
 
         if (cartItem == null)
         {
-            var product = await shopHttpClient.GetProductByIdAsync(productId);
+            var product = await shopHttpClient.GetProductById(productId);
             cart.CartItems.Add(new CartItem
             {
                 ProductId = productId,
@@ -75,7 +75,7 @@ public class CartService(
 
         foreach (var cartItem in cart.CartItems.ToList())
         {
-            var product = await shopHttpClient.FindProductByIdAsync(cartItem.ProductId);
+            var product = await shopHttpClient.FindProductById(cartItem.ProductId);
             if (product != null)
             {
                 cartItem.Price = product.Price;
