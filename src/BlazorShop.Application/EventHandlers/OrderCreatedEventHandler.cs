@@ -24,6 +24,9 @@ public class OrderCreatedEventHandler(IMongoDbRepository mongoDbRepository, IMap
         orderRm.CreationDate = notification.CreationDate;
         orderRm.OrderItems = new List<OrderItemReadModel>();
 
+        orderRm.TotalPrice = 0;
+        orderRm.TotalQuantity = 0;
+
         await mongoDbRepository.Insert<OrderReadModel>(orderRm);
     }
 }

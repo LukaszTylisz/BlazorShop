@@ -2,6 +2,7 @@ using BlazorShop.Domain.Core;
 using BlazorShop.Domain.Events;
 using BlazorShop.Domain.Exceptions;
 using MediatR;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace BlazorShop.Domain.Aggregates.OrderAggregate;
 
@@ -12,6 +13,11 @@ public class Order : AggregateRoot
     public Address Address { get; private set; }
     public DateTime CreationDate { get; private set; }
     public List<OrderItem> OrderItems { get; set; }
+
+    [BsonElement("totalPrice")]
+    public decimal TotalPrice { get; private set; } = 0;
+    [BsonElement("totalQuantity")]
+    public int TotalQuantity { get; private set; } = 0;
 
     public Order()
     {
@@ -90,6 +96,8 @@ public class Order : AggregateRoot
         Address = @event.Address;
         CreationDate = @event.CreationDate;
         OrderItems = new List<OrderItem>();
+        TotalPrice = 0;
+        TotalQuantity = 0;
     }
 
     private void Handle(OrderItemAddedEvent @event)
@@ -103,6 +111,11 @@ public class Order : AggregateRoot
         {
             OrderItems.Add(new OrderItem(@event.ProductId, @event.Quantity, @event.Price));
         }
+
+        TotalPrice += @event.Price * @event.Quantity;
+        TotalQuantity += @event.Quantity;
+
+        Console.WriteLine($"Handle event - TotalPrice: {TotalPrice}, TotalQuantity: {TotalQuantity}");
     }
 
     private void Handle(OrderStatusChangedEvent @event)

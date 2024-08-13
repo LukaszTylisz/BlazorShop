@@ -21,13 +21,16 @@ public class OrderItemAddedEventHandler(IMongoDbRepository mongoDbRepository, IM
         else
         {
             var productRm = await mongoDbRepository.GetById<ProductReadModel>(notification.ProductId);
-            
+
             orderItemRm = new OrderItemReadModel();
             orderItemRm.ProductId = notification.ProductId;
             orderItemRm.ProductName = productRm.Name;
             orderItemRm.Quantity = notification.Quantity;
             orderItemRm.Price = notification.Price;
             orderRm.OrderItems.Add(orderItemRm);
+
+            orderRm.TotalPrice += orderItemRm.Price * orderItemRm.Quantity;
+            orderRm.TotalQuantity += orderItemRm.Quantity;
         }
 
         await mongoDbRepository.Update<OrderReadModel>(notification.OrderId, orderRm);

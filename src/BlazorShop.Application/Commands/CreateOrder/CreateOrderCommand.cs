@@ -15,6 +15,8 @@ public class CreateOrderCommand(
     public string City { get; } = city;
     public string Street { get; } = street;
     public List<CreateOrderItemCommand> OrderItems { get; } = orderItems;
+    public decimal TotalPrice { get; set; }
+    public int TotalQuantity { get; set; }
 }
 
 public class CreateOrderItemCommand(Guid productId, int quantity, decimal price)
