@@ -107,4 +107,10 @@ public class ShopHttpClient(HttpClient httpClient)
         var response = await httpClient.PutAsJsonAsync($"api/Customers/{customer.Id}", customer);
         response.EnsureSuccessStatusCode();
     }
+
+    public async Task DeleteCustomer(Guid id)
+    {
+        var response = await httpClient.DeleteAsync($"api/Customers/{id}");
+        response.EnsureSuccessStatusCode();
+    }
 }

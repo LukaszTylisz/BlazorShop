@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BlazorShop.Application.Commands.CreateCustomer;
+using BlazorShop.Application.Commands.DeleteCustomer;
 using BlazorShop.Application.Commands.UpdateCustomer;
 using BlazorShop.Application.Exceptions;
 using BlazorShop.Application.Queries.GetCustomerById;
@@ -55,7 +56,7 @@ public class CustomersController : Controller
     public async Task<IActionResult> CreateCustomer(CreateCustomerDto customerDto)
     {
         var customerCmd = new CreateCustomerCommand(Guid.NewGuid(), customerDto.Name);
-        await _mediator.Send(customerDto);
+        await _mediator.Send(customerCmd);
 
         return CreatedAtAction(nameof(GetCustomerById), ControllerNameConstants.Customers, new { id = customerCmd.Id }, customerCmd);
     }
@@ -77,6 +78,25 @@ public class CustomersController : Controller
         try
         {
             await _mediator.Send(customerCmd);
+        }
+        catch (NotFoundException)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> DeleteCustomer(Guid id)
+    {
+        try
+        {
+            await _mediator.Send(new DeleteCustomerCommand(id));
         }
         catch (NotFoundException)
         {

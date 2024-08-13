@@ -1,10 +1,12 @@
 ﻿@page "/Customers"
+@using BlazorShop.Resources
 @using Client.HttpClients
 @using Client.Services
 @using global::Shared.DTOs
 @inject ShopHttpClient ShopHttpClient
 @inject AppStateService AppState
 @inject NavigationManager NavigationManager
+@inject IToastService ToastService
 
 <h1>Customers</h1>
 
@@ -15,12 +17,13 @@
 @foreach (var customer in CustomersShop)
 {
     <div class="single-item">
-        <strong>Id:</strong> @customer.Id
-        <br />
         <strong>Name:</strong> @customer.Name
         <br /><br />
         <div class="inline-block">
             <button @onclick="() => NavigateToEditingCustomer(customer.Id)" class="button">Edit</button>
+        </div>
+        <div class="inline-block">
+            <button @onclick="() => DeleteCustomer(customer)" class="button">Delete</button>
         </div>
         <hr />
     </div>
@@ -42,5 +45,13 @@
     private void NavigateToCreatingCustomer()
     {
         NavigationManager.NavigateTo($"/CreateCustomer");
+    }
+
+    private async Task DeleteCustomer(CustomerDto customer)
+    {
+        await ShopHttpClient.DeleteCustomer(customer.Id);
+        CustomersShop.Remove(customer);
+
+        ToastService.ShowSuccess(Messages.CustomerDeleted);
     }
 }
