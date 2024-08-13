@@ -53,7 +53,7 @@ public class CartService(
         {
             if (cartItem.Quantity > 1)
             {
-                cart.CartItems.Remove(cartItem);
+                cartItem.Quantity--;
             }
             else
             {
