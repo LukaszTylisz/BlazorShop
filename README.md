@@ -6,10 +6,15 @@
 - Event Sourcing
 - Clean Architecture
 - CQRS
-
+  
 <br/>
 
 ![image](https://github.com/user-attachments/assets/2e563079-27ba-44e0-b7da-211df5b9d84f)
+
+## Project Structure
+
+![image](https://github.com/user-attachments/assets/7356eec9-04f2-4948-9956-8055dcaee5e7)
+
 
 ## Backend - Swagger
 
