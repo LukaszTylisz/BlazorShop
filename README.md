@@ -13,7 +13,7 @@
 
 ## Backend - Swagger
 
-![image](https://github.com/user-attachments/assets/fc1ae459-0c94-4bd0-96bc-745493824335)
+![image](https://github.com/user-attachments/assets/08f1292a-9dd2-4fc3-985b-75ac2ba0284c)
 
 
 ## Technologies
