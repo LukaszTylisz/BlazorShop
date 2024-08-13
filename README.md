@@ -11,6 +11,10 @@
 
 ![image](https://github.com/user-attachments/assets/2e563079-27ba-44e0-b7da-211df5b9d84f)
 
+## Backend - Swagger
+
+![image](https://github.com/user-attachments/assets/7ed7e64d-97cf-4873-96e3-3b14e63a5db3)
+
 ## Technologies
 - .NET 8.0
 - C# 12
