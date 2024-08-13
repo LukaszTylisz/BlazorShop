@@ -14,17 +14,15 @@ public class OrderCreatedEventHandler(IMongoDbRepository mongoDbRepository, IMap
     {
         var customerRm = await mongoDbRepository.GetById<CustomerReadModel>(notification.CustomerId);
 
-        var orderRm = new OrderReadModel
-        {
-            Id = notification.Id,
-            CustomerId = notification.CustomerId,
-            CustomerName = customerRm.Name,
-            City = notification.Address.City,
-            Street = notification.Address.Street,
-            OrderStatus = (OrderStatus)notification.OrderStatus,
-            CreationDate = notification.CreationDate,
-            OrderItems = []
-        };
+        var orderRm = new OrderReadModel();
+        orderRm.Id = notification.Id;
+        orderRm.CustomerId = notification.CustomerId;
+        orderRm.CustomerName = customerRm.Name;
+        orderRm.City = notification.Address.City;
+        orderRm.Street = notification.Address.Street;
+        orderRm.OrderStatus = (OrderStatus)notification.OrderStatus;
+        orderRm.CreationDate = notification.CreationDate;
+        orderRm.OrderItems = new List<OrderItemReadModel>();
 
         await mongoDbRepository.Insert<OrderReadModel>(orderRm);
     }

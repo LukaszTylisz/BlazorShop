@@ -120,6 +120,9 @@
   <data name="CustomerCreated" xml:space="preserve">
     <value>Customer created</value>
   </data>
+  <data name="CustomerDeleted" xml:space="preserve">
+    <value>Customer Deleted</value>
+  </data>
   <data name="CustomerSaved" xml:space="preserve">
     <value>Customer saved</value>
   </data>

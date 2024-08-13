@@ -1,5 +1,4 @@
 using BlazorShop.Domain.Aggregates.OrderAggregate;
-using BlazorShop.Domain.Dispatchers;
 using BlazorShop.Domain.Dispatchers.Interfaces;
 using BlazorShop.Domain.Repositories.Interfaces;
 using MediatR;

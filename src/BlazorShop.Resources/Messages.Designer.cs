@@ -70,6 +70,15 @@ namespace BlazorShop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Deleted.
+        /// </summary>
+        public static string CustomerDeleted {
+            get {
+                return ResourceManager.GetString("CustomerDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer saved.
         /// </summary>
         public static string CustomerSaved {
