@@ -6,7 +6,7 @@ public class OrderDto
 {
     public Guid Id { get; set; }
 
-    public Guid CustomerId { get; set; }        
+    public Guid CustomerId { get; set; }
 
     public string CustomerName { get; set; } = default!;
 
@@ -18,14 +18,14 @@ public class OrderDto
 
     public DateTime CreationDate { get; set; }
 
-    public List<OrderItemDTO> OrderItems { get; set; } = default!;
+    public List<OrderItemDto> OrderItems { get; set; } = default!;
 
     public decimal TotalPrice { get; set; }
 
     public int TotalQuantity { get; set; }
 }
 
-public abstract class OrderItemDTO
+public class OrderItemDto
 {
     public Guid ProductId { get; set; }
 
