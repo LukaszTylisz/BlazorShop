@@ -15,6 +15,19 @@
 
 ![image](https://github.com/user-attachments/assets/08f1292a-9dd2-4fc3-985b-75ac2ba0284c)
 
+## Frontend
+
+Created Order with changing status
+![image](https://github.com/user-attachments/assets/ea7cb1be-f7d2-4958-85c3-44ffeb390492)
+![image](https://github.com/user-attachments/assets/d7527996-0609-4a6c-9aa7-113ebffedb5a)
+![image](https://github.com/user-attachments/assets/813e77ba-ef26-433b-8d7d-7db5227ee884)
+![image](https://github.com/user-attachments/assets/7f40fbe6-5927-4f74-b909-d5dd8f9c2a74)
+![image](https://github.com/user-attachments/assets/44f4e353-84c0-4598-9e26-5d25445e3b0b)
+
+Order Canceled
+
+![image](https://github.com/user-attachments/assets/82a8e0fe-4e21-4b57-97d4-f84ac14a341b)
+
 
 ## Technologies
 - .NET 8.0
